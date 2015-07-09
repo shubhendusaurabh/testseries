@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <h2>{{ question.question_text }}</h2>
+    <p>
+        {{ question.get_sisubject }}
+    </p>
+    <ul>
+        {% for choice in question.choices.all %}
+        <li>{{ choice.choice_text }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
