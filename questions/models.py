@@ -34,6 +34,7 @@ class Question(models.Model):
 	question_text = models.TextField()
 	answer = models.CharField(max_length=2)
 	chapter = models.ForeignKey(Chapter)
+	image = models.ImageField(upload_to='static/img/questions', null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
