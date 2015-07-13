@@ -16,7 +16,21 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+
+from rest_framework import routers
+
+from questions import views
+
+router = routers.DefaultRouter()
+router.register(r'questions', views.QuestionViewSet)
+router.register(r'choices', views.ChoiceViewSet)
+router.register('exams', views.ExamViewSet)
+router.register('subjects', views.SubjectViewSet)
+router.register('units', views.UnitViewSet)
+router.register('chapters', views.ChapterViewSet)
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^', include('questions.urls')),
 ]
