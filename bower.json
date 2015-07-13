@@ -1,0 +1,29 @@
+{
+  "name": "testseries",
+  "version": "0.0.1",
+  "authors": [
+    "Shubhendu <shubhendu.saurabh@hotmail.com>"
+  ],
+  "description": "Test Series for Competitive Exams",
+  "keywords": [
+    "test",
+    "series",
+    "jee",
+    "iit"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.4.2",
+    "angular-ui": "~0.4.0",
+    "angular": "~1.4.2"
+  }
+}
