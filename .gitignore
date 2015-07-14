@@ -54,3 +54,5 @@ docs/_build/
 
 # Sqlite3
 *.sqlite3
+
+static/lib/
