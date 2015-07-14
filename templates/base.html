@@ -1,12 +1,9 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html ng-app="Questions">
     <head>
         <meta charset="utf-8">
         <title>Welcome</title>
-        <script type="text/javascript"
-          src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
     </head>
     <body>
         <div class="container">
@@ -21,10 +18,17 @@
         </div>
         <div class="container">
             {% block content %}
+            <div class="row" ng-view>
+
+            </div>
             {% endblock content %}
         </div>
         <script src="{% static 'lib/angular/angular.min.js' %}"></script>
         <script src="{% static 'lib/angular-route/angular-route.min.js' %}"></script>
         <script src="{% static 'lib/angular-ui/build/angular-ui.min.js' %}"></script>
+        <script src="{% static 'lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML' %}"></script>
+        <script src="{% static 'js/app.js' %}"></script>
+        <script src="{% static 'js/controllers.js' %}"></script>
+        <script src="{% static 'js/services.js' %}"></script>
     </body>
 </html>
