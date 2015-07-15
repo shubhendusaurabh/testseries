@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="list-group">
+            <p>
+                {{ question.question_text }}
+            </p>
+            <ul>
+                <li ng-repeat="choice in question.choices">
+                    <span mathjax-bind="choice"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

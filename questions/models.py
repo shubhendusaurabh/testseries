@@ -46,4 +46,4 @@ class Choice(models.Model):
 	choice_text = models.CharField(max_length=200)
 
 	def __unicode__(self):
-		return ('%s -> %s' %(self.question, self.choice_text))
+		return self.choice_text

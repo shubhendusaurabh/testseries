@@ -3,9 +3,10 @@ from rest_framework import serializers
 from .models import Question, Choice, Exam, Subject, Unit, Chapter
 
 class QuestionSerializer(serializers.HyperlinkedModelSerializer):
+    choices = serializers.StringRelatedField(many=True)
     class Meta:
         model = Question
-        fields = ('question_text', 'answer', 'chapter', 'image')
+        fields = ('pk', 'question_text', 'answer', 'chapter', 'image', 'choices')
 
 class ChoiceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

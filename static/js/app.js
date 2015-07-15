@@ -3,12 +3,13 @@
 angular.module('Questions', [
     'ngRoute',
     'Questions.controllers',
-    'Questions.services'
+    'Questions.services',
+    'Questions.directives'
 ])
     .config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider.
-            when('/question/:questionId', {
-                templateUrl: '/static/templates/question-detail.html',
+            when('/questions/:questionId', {
+                templateUrl: '/static/templates/question_detail.html',
                 controller: 'QuestionDetailCtrl'
             }).
             when('/questions', {

@@ -3,7 +3,7 @@
         <div class="list-group">
             <ul>
                 <li ng-repeat="question in questions">
-                    <a ng-href="{{ question.chapter }}" class="list-group-item">
+                    <a ng-href="#/questions/{{ question.pk }}" class="list-group-item">
                         {{ question.question_text }}
                     </a>
                 </li>
