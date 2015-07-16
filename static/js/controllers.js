@@ -2,8 +2,18 @@
 
 var questionsController = angular.module('Questions.controllers', []);
 
-questionsController.controller('QuesionListCtrl', ['$scope', 'QuestionService',
-    function ($scope, QuestionService) {
+questionsController.controller('QuestionCtrl', ['$scope', '$routeParams', 'QuestionService',
+    function ($scope, $routeParams, QuestionService) {
+
+        $scope.$on('$locationChangeStart', function(scope, next, current){
+            console.log(current, next);
+            $scope.questionId = $routeParams.questionId;
+            if ($scope.questionId) {
+                $scope.question = $scope.lookUp[$scope.questionId];
+            }
+            console.log($scope.lookUp);
+            console.log($scope.question);
+        });
         $scope.questions = [];
         $scope.getQuestions = function() {
             var promise = QuestionService.getQuestions();
@@ -16,25 +26,14 @@ questionsController.controller('QuesionListCtrl', ['$scope', 'QuestionService',
                     console.log('Error: ', error);
                 }
             );
+            $scope.lookUp = {};
+            for (var i = 0; i < $scope.questions.ength; i++) {
+                $scope.lookUp[$scope.questions[i].pk] = $scope.questions[i];
+            }
         }();
-    }
-]);
+        if ($scope.questionId) {
+            $scope.question = $scope.lookUp[$scope.questionId];
+        }
 
-questionsController.controller('QuestionDetailCtrl', ['$scope', '$routeParams', 'QuestionService',
-    function ($scope, $routeParams, QuestionService) {
-        console.log($scope.questions);
-        $scope.questionId = $routeParams.questionId;
-        $scope.getQuestion = function() {
-            var promise = QuestionService.getQuestion($scope.questionId);
-            promise.then(
-                function(data) {
-                    $scope.question = data.data;
-                    console.log(data);
-                },
-                function(error) {
-                    console.log('Error: ', error);
-                }
-            );
-        }();
     }
 ]);

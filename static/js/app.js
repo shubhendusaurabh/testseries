@@ -10,16 +10,14 @@ angular.module('Questions', [
         $routeProvider.
             when('/questions/:questionId', {
                 templateUrl: '/static/templates/question_detail.html',
-                controller: 'QuestionDetailCtrl'
+                controller: 'QuestionCtrl'
             }).
             when('/questions', {
                 templateUrl: '/static/templates/question_list.html',
-                controller: 'QuesionListCtrl'
+                controller: 'QuestionCtrl'
             }).
             otherwise({
                 redirectTo: '/questions'
             });
-
-
 
     }]);
