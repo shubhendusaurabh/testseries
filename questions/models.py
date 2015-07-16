@@ -1,5 +1,9 @@
+from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
+
 from django.db import models
 
+@python_2_unicode_compatible
 class Exam(models.Model):
 	name = models.CharField(max_length=100)
 	abbr = models.CharField(max_length=10)
@@ -7,29 +11,33 @@ class Exam(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 
+@python_2_unicode_compatible
 class Subject(models.Model):
 	name = models.CharField(max_length=50)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 
+@python_2_unicode_compatible
 class Unit(models.Model):
 	name = models.CharField(max_length=100)
 	subject = models.ForeignKey(Subject)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 
+@python_2_unicode_compatible
 class Chapter(models.Model):
 	name = models.CharField(max_length=100)
 	unit = models.ForeignKey(Unit)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 
+@python_2_unicode_compatible
 class Question(models.Model):
 	question_text = models.TextField()
 	answer = models.CharField(max_length=2)
@@ -38,12 +46,13 @@ class Question(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.question_text
 
+@python_2_unicode_compatible
 class Choice(models.Model):
 	question = models.ForeignKey(Question, related_name='choices')
 	choice_text = models.CharField(max_length=200)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.choice_text

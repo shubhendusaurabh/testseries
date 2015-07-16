@@ -22,6 +22,7 @@ questionsController.controller('QuesionListCtrl', ['$scope', 'QuestionService',
 
 questionsController.controller('QuestionDetailCtrl', ['$scope', '$routeParams', 'QuestionService',
     function ($scope, $routeParams, QuestionService) {
+        console.log($scope.questions);
         $scope.questionId = $routeParams.questionId;
         $scope.getQuestion = function() {
             var promise = QuestionService.getQuestion($scope.questionId);

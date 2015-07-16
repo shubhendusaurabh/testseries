@@ -1,14 +1,22 @@
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-md-8">
         <div class="list-group">
-            <p>
-                {{ question.question_text }}
+            <p mathjax-bind="question.question_text" class="well">
             </p>
             <ul>
-                <li ng-repeat="choice in question.choices">
+                <li ng-repeat="choice in question.choices track by $index">
                     <span mathjax-bind="choice"></span>
                 </li>
             </ul>
+            <nav>
+              <ul class="pager">
+                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                <li class="next"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
+              </ul>
+            </nav>
         </div>
+    </div>
+    <div class="col-md-4">
+      <button ng-repeat="question in questions | orderBy: 'number'" ng-click="selectQuestion(question)">{{ number }}</button>
     </div>
 </div>
