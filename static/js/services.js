@@ -4,17 +4,42 @@ var questionsService = angular.module('Questions.services', []);
 
 questionsService.factory('QuestionService', ['$http', '$q',
     function ($http, $q) {
-        function getQuestions() {
-            return $http.get('/api/questions/');
+
+        var questions = null;
+
+        function getAllQuestions() {
+            var deferred = $q.defer();
+            if (questions == null) {
+                $http.get('/api/questions/')
+                    .success(function (data) {
+                        questions = data.results;
+                        deferred.resolve(data.results);
+                    })
+                    .error(function (error) {
+                        console.error(error);
+                        deferred.reject(error)
+                    });
+            } else {
+                deferred.resolve(questions);
+            }
+            return deferred.promise;
         }
 
-        function getQuestion(id) {
-            return $http.get('/api/questions/' + id);
+        function getQuestionById(id) {
+            var deferred = $q.defer();
+            if (questions != null && questions[id]) {
+                deferred.resolve(questions[id]);
+            } else {
+                getAllQuestions().then(function () {
+                    deferred.resolve(questions[id]);
+                });
+            }
+            return deferred.promise;
         }
 
         return {
-            getQuestions: getQuestions,
-            getQuestion: getQuestion
+            getAllQuestions: getAllQuestions,
+            getQuestionById: getQuestionById
         }
     }
 ]);

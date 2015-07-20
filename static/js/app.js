@@ -10,7 +10,7 @@ angular.module('Questions', [
         $routeProvider.
             when('/questions/:questionId', {
                 templateUrl: '/static/templates/question_detail.html',
-                controller: 'QuestionCtrl'
+                controller: 'QuestionDetailCtrl'
             }).
             when('/questions', {
                 templateUrl: '/static/templates/question_list.html',

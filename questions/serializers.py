@@ -7,6 +7,7 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Question
         fields = ('pk', 'question_text', 'answer', 'chapter', 'image', 'choices')
+        depth = 3
 
 class ChoiceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

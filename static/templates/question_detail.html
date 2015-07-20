@@ -9,14 +9,11 @@
                 </li>
             </ul>
             <nav>
-              <ul class="pager">
+              <ul class="pager" ng-controller="QuestionCtrl">
                 <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>
-                <li class="next"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
+                <li class="next"><a ng-href="{{ question.pk + 1 }}">Next <span aria-hidden="true">&rarr;</span></a></li>
               </ul>
             </nav>
         </div>
-    </div>
-    <div class="col-md-4">
-      <button ng-repeat="question in questions | orderBy: 'number'" ng-click="selectQuestion(question)">{{ number }}</button>
     </div>
 </div>
