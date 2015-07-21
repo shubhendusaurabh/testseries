@@ -9,10 +9,12 @@ angular.module('Questions', [
     .config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider.
             when('/questions/:questionId', {
-                templateUrl: '/static/templates/question_detail.html'
+                templateUrl: '/static/templates/question_detail.html',
+                controller: 'QuestionCtrl'
             }).
             when('/questions', {
-                templateUrl: '/static/templates/question_list.html'
+                templateUrl: '/static/templates/question_list.html',
+                controller: 'QuestionCtrl'
             }).
             otherwise({
                 redirectTo: '/questions'

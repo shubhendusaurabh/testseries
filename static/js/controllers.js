@@ -10,19 +10,14 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
 
       $scope.questionId = $routeParams.questionId;
 
-      if ($scope.questionId) {
-        console.log("Fetcihing by id");
-        QuestionService.getQuestionById($scope.questionId).then(function (question) {
-          $scope.question = question;
-          console.log(question.viewed);
-        });
-      } else {
-        console.log("fetching all");
-        QuestionService.getAllQuestions().then(function (questions) {
-          $scope.questions = questions;
-          console.log($scope.questions);
-        });
-      }
+      QuestionService.getAllQuestions().then(function (questions) {
+        $scope.questions = questions;
+        if ($scope.questionId) {
+          QuestionService.getQuestionById($scope.questionId).then(function (question) {
+            $scope.question = question;
+          });
+        }
+      });
 
       $scope.skipTo = function(questionId) {
         $location.path('/questions/' + questionId);
@@ -37,11 +32,5 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
         $scope.questionId = parseInt($scope.questionId) - 1;
         $location.path('/questions/' + $scope.questionId);
       }
-    }
-]);
-
-questionsController.controller('QuestionDetailCtrl', ['$scope', '$routeParams', 'QuestionService',
-    function ($scope, $routeParams, QuestionService) {
-
     }
 ]);

@@ -40,17 +40,23 @@ questionsService.factory('QuestionService', ['$http', '$q',
 
         function getQuestionById(id) {
             var deferred = $q.defer();
-            if (questions != null && questions[id]) {
-                questions[id].viewed = true;
-                console.log("set to true");
-                deferred.resolve(questions[id]);
+            if (questions[id]) {
+              questions[id].viewed = true;
+              deferred.resolve(questions[id]);
             } else {
-                getAllQuestions().then(function () {
-                  questions[id].viewed = true;
-                  console.log(questions);
-                  deferred.resolve(questions[id]);
-                });
+              deferred.reject("Not found");
             }
+            // if (questions != null && questions[id]) {
+            //     questions[id].viewed = true;
+            //     console.log("set to true");
+            //     deferred.resolve(questions[id]);
+            // } else {
+            //     getAllQuestions().then(function () {
+            //       questions[id].viewed = true;
+            //       console.log(questions);
+            //       deferred.resolve(questions[id]);
+            //     });
+            // }
             return deferred.promise;
         }
 

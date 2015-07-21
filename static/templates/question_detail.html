@@ -21,7 +21,7 @@
       <nav>
       <ul class="pager">
         <li ng-repeat="question in questions track by $index">
-          <a ng-click="skipTo($index)" ng-class="{ 'viewed': question.viewed, 'solved': question.solved, 'review': question.review }">{{$index}} {{ question.viewed }}</a>
+          <a ng-click="skipTo($index)" ng-class="{ 'viewed': question.viewed, 'solved': question.solved, 'review': question.review }">{{$index}}</a>
         </li>
       </ul>
     </nav>
