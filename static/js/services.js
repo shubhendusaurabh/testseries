@@ -28,42 +28,29 @@ questionsService.factory('QuestionService', ['$http', '$q',
 
         function processQuestions() {
           for (var i = 0; i < questions.length; i++) {
-            questions[i].viewed = false;
-            questions[i].saved = false;
-            questions[i].review = false;
+            questions[i].status = 'not_answered';
           }
         }
 
-        function setStateToTrue(id, property) {
-          questions[id].property = true;
+        function setStatus(id, status) {
+          questions[id].status = status;
         }
 
         function getQuestionById(id) {
             var deferred = $q.defer();
             if (questions[id]) {
-              questions[id].viewed = true;
+              setStatus(id, "viewed");
               deferred.resolve(questions[id]);
             } else {
               deferred.reject("Not found");
             }
-            // if (questions != null && questions[id]) {
-            //     questions[id].viewed = true;
-            //     console.log("set to true");
-            //     deferred.resolve(questions[id]);
-            // } else {
-            //     getAllQuestions().then(function () {
-            //       questions[id].viewed = true;
-            //       console.log(questions);
-            //       deferred.resolve(questions[id]);
-            //     });
-            // }
             return deferred.promise;
         }
 
         return {
             getAllQuestions: getAllQuestions,
             getQuestionById: getQuestionById,
-            setStateToTrue: setStateToTrue
+            setStatus: setStatus
         }
     }
 ]);

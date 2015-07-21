@@ -1,12 +1,15 @@
 a {
   cursor: pointer;
 }
-a.solved {
-  background-color: green;
+button.solved {
+  background-color: green !important;
 }
-a.review {
-  background-color: rgb(166, 217, 21);
+button.review {
+  background-color: rgb(166, 217, 21) !important;
 }
-a.viewed {
-  background-color: rgb(214, 24, 18);
+button.viewed {
+  background-color: rgb(214, 24, 18) !important;
+}
+button.not_viewed {
+  background-color: #fff !important;
 }
