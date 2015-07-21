@@ -13,7 +13,8 @@ questionsService.factory('QuestionService', ['$http', '$q',
                 $http.get('/api/questions/')
                     .success(function (data) {
                         questions = data.results;
-                        deferred.resolve(data.results);
+                        processQuestions();
+                        deferred.resolve(questions);
                     })
                     .error(function (error) {
                         console.error(error);
@@ -25,13 +26,29 @@ questionsService.factory('QuestionService', ['$http', '$q',
             return deferred.promise;
         }
 
+        function processQuestions() {
+          for (var i = 0; i < questions.length; i++) {
+            questions[i].viewed = false;
+            questions[i].saved = false;
+            questions[i].review = false;
+          }
+        }
+
+        function setStateToTrue(id, property) {
+          questions[id].property = true;
+        }
+
         function getQuestionById(id) {
             var deferred = $q.defer();
             if (questions != null && questions[id]) {
+                questions[id].viewed = true;
+                console.log("set to true");
                 deferred.resolve(questions[id]);
             } else {
                 getAllQuestions().then(function () {
-                    deferred.resolve(questions[id]);
+                  questions[id].viewed = true;
+                  console.log(questions);
+                  deferred.resolve(questions[id]);
                 });
             }
             return deferred.promise;
@@ -39,7 +56,8 @@ questionsService.factory('QuestionService', ['$http', '$q',
 
         return {
             getAllQuestions: getAllQuestions,
-            getQuestionById: getQuestionById
+            getQuestionById: getQuestionById,
+            setStateToTrue: setStateToTrue
         }
     }
 ]);

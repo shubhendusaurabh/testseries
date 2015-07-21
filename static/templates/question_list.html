@@ -2,8 +2,8 @@
     <div class="col-lg-12">
         <div class="list-group">
             <ul>
-                <li ng-repeat="question in questions">
-                    <a ng-href="#/questions/{{ question.pk }}" class="list-group-item">
+                <li ng-repeat="question in questions track by $index">
+                    <a ng-href="#/questions/{{ $index }}" class="list-group-item">
                         {{ question.question_text }}
                     </a>
                 </li>

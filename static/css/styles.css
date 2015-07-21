@@ -1,0 +1,12 @@
+a {
+  cursor: pointer;
+}
+a.solved {
+  background-color: green;
+}
+a.review {
+  background-color: rgb(166, 217, 21);
+}
+a.viewed {
+  background-color: rgb(214, 24, 18);
+}
