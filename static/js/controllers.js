@@ -19,6 +19,18 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
         }
       });
 
+      $scope.saveSelection = function() {
+        $scope.question.status = "saved";
+      };
+
+      $scope.saveForReview = function() {
+        $scope.question.status = "review";
+      };
+
+      $scope.clearSelection = function() {
+        $scope.question.status = "viewed";
+      };
+
       $scope.skipTo = function(questionId) {
         $location.path('/questions/' + questionId);
       }
@@ -33,4 +45,18 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
         $location.path('/questions/' + $scope.questionId);
       }
     }
+]);
+
+questionsController.controller('TimerCtrl', ['$scope', 'TimerService',
+  function($scope, TimerService) {
+    $scope.remainingTime = function() {
+      var time = new Date() - $scope.endTime;
+      return time;
+    };
+
+    TimerService.getTime().then(function(time) {
+      $scope.endTime = time.endtime;
+      console.log(time.endtime);
+    });
+  }
 ]);

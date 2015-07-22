@@ -1,7 +1,10 @@
 a {
   cursor: pointer;
 }
-button.solved {
+.question_map, .question_map .btn:hover {
+  color: #fff;
+}
+button.saved {
   background-color: green !important;
 }
 button.review {
@@ -12,4 +15,25 @@ button.viewed {
 }
 button.not_viewed {
   background-color: #fff !important;
+}
+.question_actions .btn {
+  text-transform: none !important;
+}
+.question_choices {
+  list-style-type: none;
+  margin-left: 0;
+  padding-right: 0;
+}
+.question_choices li {
+  counter-increment: step-counter;
+}
+.question_choices li::before {
+  content: counter(step-counter, upper-alpha);
+  margin-right: 5px;
+  font-size: 80%;
+  background-color: rgb(200,200,200);
+  color: white;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 3px;
 }

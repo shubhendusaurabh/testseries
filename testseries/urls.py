@@ -31,6 +31,7 @@ router.register('chapters', views.ChapterViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/time/', views.TestDateTime.as_view()),
     url(r'^api/', include(router.urls)),
     #url(r'^', include('questions.urls')),
     url(r'^$', TemplateView.as_view(template_name= 'base.html' )),

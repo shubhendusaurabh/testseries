@@ -3,11 +3,16 @@
         <div class="list-group">
             <p mathjax-bind="question.question_text" class="well">
             </p>
-            <ul>
-                <li ng-repeat="choice in question.choices track by $index">
+            <ul class="question_choices">
+                <li ng-repeat="choice in question.choices track by $index" ng-click="changeChoice(choice)" ng-class="{'choice_selected': choice.selected}">
                     <span mathjax-bind="choice"></span>
                 </li>
             </ul>
+            <div class="question_actions">
+              <button type="button" class="btn btn-primary" ng-click="saveSelection()">Save</button>
+              <button type="button" class="btn btn-success" ng-click="saveForReview()">Review Later</button>
+              <button type="button" class="btn btn-danger" ng-click="clearSelection()">Clear Selection</button>
+            </div>
             <nav>
               <ul class="pager">
                 <li class="previous"><a ng-click="previous()"><span aria-hidden="true">&larr;</span> Previous</a></li>

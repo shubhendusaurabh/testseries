@@ -54,3 +54,25 @@ questionsService.factory('QuestionService', ['$http', '$q',
         }
     }
 ]);
+
+questionsService.factory('TimerService', ['$http', '$q',
+  function ($http, $q) {
+    function getExamStartTime() {
+      var deferred = $q.defer();
+      $http.get('/api/time/')
+        .success(function(data) {
+          deferred.resolve(data);
+        })
+        .error(function(error) {
+          deferred.reject(data);
+          console.error(error);
+        });
+
+      return deferred.promise;
+    }
+
+    return {
+      getTime: getExamStartTime
+    }
+  }
+]);
