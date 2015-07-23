@@ -47,9 +47,6 @@
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                   </form>
-                  <ul class="nav navbar-nav navbar-right" ng-controller="TimerCtrl">
-                    <li ng-include="'static/templates/timer.html'"></li>
-                  </ul>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
             </nav>
@@ -66,6 +63,7 @@
         <script src="{% static 'lib/angular-route/angular-route.min.js' %}"></script>
         <script src="{% static 'lib/angular-bootstrap/ui-bootstrap-tpls.min.js' %}"></script>
         <script src="{% static 'lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML' %}"></script>
+        <script src="{% static 'lib/moment/moment.js' %}"></script>
         <script src="{% static 'js/app.js' %}"></script>
         <script src="{% static 'js/controllers.js' %}"></script>
         <script src="{% static 'js/services.js' %}"></script>

@@ -2,8 +2,10 @@
 
 var questionsController = angular.module('Questions.controllers', []);
 
-questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routeParams', 'QuestionService',
-    function ($scope, $location, $routeParams, QuestionService) {
+questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routeParams', '$interval', 'QuestionService',
+    function ($scope, $location, $routeParams, $interval, QuestionService) {
+
+      var timerPromise, deadlineTime;
 
       $scope.questions = [];
       $scope.question = {};
@@ -14,9 +16,38 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
         $scope.questions = questions;
         if ($scope.questionId) {
           QuestionService.getQuestionById($scope.questionId).then(function (question) {
+            deadlineTime = moment().add(2, 'minutes');
+            startTimer();
             $scope.question = question;
           });
         }
+      });
+
+      function startTimer() {
+        stopTimer();
+        timerPromise = $interval(setTimer, 1000);
+      }
+
+      function stopTimer() {
+        $interval.cancel(timerPromise);
+      }
+
+      function setTimer() {
+        var diff = deadlineTime.diff(moment());
+        if (diff < 0) {
+          stopTimer();
+        }
+        var durr = moment.duration(diff);
+        $scope.countdown = durr.minutes() + ':' + durr.seconds();
+        console.log($scope.countdown);
+      }
+
+      function timesUp() {
+        //TODO show hint
+      }
+
+      $scope.$on('$destroy', function() {
+        stopTimer();
       });
 
       $scope.saveSelection = function() {
@@ -45,18 +76,4 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
         $location.path('/questions/' + $scope.questionId);
       }
     }
-]);
-
-questionsController.controller('TimerCtrl', ['$scope', 'TimerService',
-  function($scope, TimerService) {
-    $scope.remainingTime = function() {
-      var time = new Date() - $scope.endTime;
-      return time;
-    };
-
-    TimerService.getTime().then(function(time) {
-      $scope.endTime = time.endtime;
-      console.log(time.endtime);
-    });
-  }
 ]);
