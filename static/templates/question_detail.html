@@ -3,6 +3,10 @@
         <div class="list-group">
             <p mathjax-bind="question.question_text" class="well">
             </p>
+            <p ng-if="question.image">
+              <img ng-src="{{ question.image }}" alt="" />
+              {{ question.image }}
+            </p>
             <ul class="question_choices">
                 <li ng-repeat="choice in question.choices track by $index" ng-click="changeChoice(choice)" ng-class="{'choice_selected': choice.selected}">
                     <span mathjax-bind="choice"></span>

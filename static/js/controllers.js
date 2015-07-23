@@ -39,7 +39,6 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
         }
         var durr = moment.duration(diff);
         $scope.countdown = durr.minutes() + ':' + durr.seconds();
-        console.log($scope.countdown);
       }
 
       function timesUp() {
