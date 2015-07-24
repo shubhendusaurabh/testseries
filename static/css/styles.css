@@ -27,6 +27,9 @@ button.not_viewed {
 .question_choices li {
   counter-increment: step-counter;
 }
+.question_choices li span {
+  cursor: pointer;
+}
 .question_choices li::before {
   content: counter(step-counter, upper-alpha);
   margin-right: 5px;
@@ -36,4 +39,8 @@ button.not_viewed {
   font-weight: bold;
   padding: 3px 8px;
   border-radius: 3px;
+  cursor: pointer;
+}
+.question_choices li.choice_selected::before {
+  background-color: rgb(36, 70, 214);
 }

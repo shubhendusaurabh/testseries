@@ -36,21 +36,29 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
         var diff = deadlineTime.diff(moment());
         if (diff < 0) {
           stopTimer();
+          timesUp();
         }
         var durr = moment.duration(diff);
         $scope.countdown = durr.minutes() + ':' + durr.seconds();
       }
 
       function timesUp() {
-        //TODO show hint
+        $scope.question.showHint = true;
       }
 
       $scope.$on('$destroy', function() {
         stopTimer();
       });
 
+      $scope.changeChoice = function($index) {
+        $scope.question.user_selected = $index;
+      }
+
       $scope.saveSelection = function() {
         $scope.question.status = "saved";
+        if (($scope.question.answer-1) == $index) {
+          $scope.question.
+        }
       };
 
       $scope.saveForReview = function() {
