@@ -56,3 +56,4 @@ docs/_build/
 *.sqlite3
 
 static/lib/
+static/img/questions/
