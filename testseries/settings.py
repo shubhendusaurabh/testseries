@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'djangobower',
     'questions',
 )
 
@@ -110,7 +111,12 @@ STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+BOWER_COMPONENTS_ROOT = os.path.join(STATIC_ROOT, 'lib')
 MEDIA_ROOT = '/'
 MEDIA_URL = '/'
 
@@ -139,6 +145,14 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
+
+BOWER_INSTALLED_APPS = (
+    'angular',
+    'angular-route',
+    'MathJax',
+    'angular-bootstrap',
+    'moment',
+)
 
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
