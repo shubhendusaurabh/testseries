@@ -57,7 +57,7 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
       $scope.saveSelection = function() {
         $scope.question.status = "saved";
         if (($scope.question.answer-1) == $index) {
-          $scope.question.
+          console.log($scope.question.answer);
         }
       };
 
