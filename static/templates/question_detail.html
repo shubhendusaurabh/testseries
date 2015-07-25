@@ -5,7 +5,6 @@
             </p>
             <p ng-if="question.image">
               <img ng-src="{{ question.image }}" alt="" />
-              {{ question.image }}
             </p>
             <ul class="question_choices">
                 <li ng-repeat="choice in question.choices track by $index" ng-click="changeChoice($index)" ng-class="{'choice_selected': $index == question.user_selected}">
@@ -19,8 +18,8 @@
             </div>
             <nav>
               <ul class="pager">
-                <li class="previous"><a ng-click="previous()"><span aria-hidden="true">&larr;</span> Previous</a></li>
-                <li class="next"><a ng-click="next()">Next<span aria-hidden="true">&rarr;</span></a></li>
+                <li class="previous" ng-class="{disabled: (questionId < 1)}"><a ng-click="previous()"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                <li class="next" ng-class="{disabled: (questionId >= questions.length-1)}"><a ng-click="next()">Next<span aria-hidden="true">&rarr;</span></a></li>
               </ul>
             </nav>
         </div>
@@ -28,7 +27,7 @@
 
     <div class="col-md-4">
       <div class="panel panel-primary">
-        <p>{{ countdown }}</p>
+        <p class="countdown">{{ countdown }}</p>
       </div>
       <nav class="question_map">
           <ul class="pager">

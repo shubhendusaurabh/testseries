@@ -44,3 +44,9 @@ button.not_viewed {
 .question_choices li.choice_selected::before {
   background-color: rgb(36, 70, 214);
 }
+.countdown {
+  text-align: center;
+  font-size: 2em;
+  color: #ff0000;
+  font-weight: bold;
+}

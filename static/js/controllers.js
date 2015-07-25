@@ -74,11 +74,17 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
       }
 
       $scope.next = function() {
+        if ($scope.questionId >= ($scope.questions.length-1)) {
+          return false;
+        }
         $scope.questionId = parseInt($scope.questionId) + 1;
         $location.path('/questions/' + $scope.questionId);
       };
 
       $scope.previous = function() {
+        if ($scope.questionId < 1) {
+          return false;
+        }
         $scope.questionId = parseInt($scope.questionId) - 1;
         $location.path('/questions/' + $scope.questionId);
       }
