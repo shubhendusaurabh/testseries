@@ -55,9 +55,10 @@ questionsController.controller('QuestionCtrl', ['$scope', '$location', '$routePa
       }
 
       $scope.saveSelection = function() {
+        console.log($scope.question.answer, $scope.question.user_selected);
         $scope.question.status = "saved";
-        if (($scope.question.answer-1) == $index) {
-          console.log($scope.question.answer);
+        if (($scope.question.answer-1) != $scope.question.user_selected) {
+          $scope.question.showHint = true;
         }
       };
 
